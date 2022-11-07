@@ -1,0 +1,43 @@
+<?php
+    $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $uri_segments = explode('/', $uri_path);
+?>
+
+
+<div class="appBottomMenu">
+    <a href="/catalog" class="item <?=($uri_segments[1] == 'catalog' ? 'active' : '')?>">
+        <div class="col">
+            <ion-icon name="accessibility-outline" role="img" class="md hydrated" aria-label="file tray full outline">
+            </ion-icon>
+            <strong>Каталог</strong>
+        </div>
+    </a>
+    <a href="/stats" class="item <?=($uri_segments[1] == 'stats' ? 'active' : '')?>">
+        <div class="col">
+            <ion-icon name="stats-chart-outline" role="img" class="md hydrated" aria-label="file tray full outline">
+            </ion-icon>
+            <strong>Статистика</strong>
+        </div>
+    </a>
+    <a href="/add" class="item dropdown">
+        <div class="col">
+            <div class="action-button large">
+                <ion-icon name="add-outline" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+            </div>
+        </div>
+    </a>
+    <a href="#" class="item <?=($uri_segments[1] == 'duels' ? 'active' : '')?>">
+        <div class="col">
+            <ion-icon name="restaurant-outline" role="img" class="md hydrated" aria-label="people outline">
+            </ion-icon>
+            <strong>Дуэли</strong>
+        </div>
+    </a>
+    <a href="/profile" class="item <?=($uri_segments[1] == 'profile' ? 'active' : '')?>">
+        <div class="col">
+            <ion-icon name="person-outline" role="img" class="md hydrated" aria-label="people outline">
+            </ion-icon>
+            <strong>Профиль</strong>
+        </div>
+    </a>
+</div>
