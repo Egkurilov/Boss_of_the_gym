@@ -1,13 +1,78 @@
-<!doctype html>
-<html lang="en">
+{% include "components/header.html" %}
 
-<head>
+    <!-- App Capsule -->
+    <div id="appCapsule" class="pt-5">
 
-</head>
+        <div class="appHeader">
+            <div class="left">
+                <a href="#" class="headerButton">
+                    <ion-icon name="chevron-back-outline" role="img" class="md hydrated"
+                        aria-label="chevron back outline"></ion-icon>
+                </a>
+            </div>
+            <div class="pageTitle">GYM APP</div>
+        </div>
 
-<body class="bg-white">
-<h1>Главная страница</h1>
+        <div class="section full mt-3">
+            <div class="section-title">Добавить упражнение</div>
+            <div class="wide-block full">
 
-</body>
+                <ul class="nav nav-tabs lined" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#strength" role="tab" aria-selected="true">
+                            Силовые
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#cardio" role="tab" aria-selected="false">
+                            Кардио
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="strength" role="tabpanel">
+                        <ul class="listview link-listview calalog">
+                            <li><a href="#" data-toggle="modal" data-target="#DialogBasic">Жим лёжа</a></li>
+                            <li class="remove"><a href="#">Жим лёжа</a></li>
+                            <li class="remove"><a href="#">Жим лёжа</a></li>
+                            <li class="remove"><a href="#">Жим лёжа</a></li>
+                            <li><a href="#">Жим лёжа</a></li>
+                            <li><a href="#">Жим лёжа</a></li>
+                            <li><a href="#">Жим лёжа</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="cardio" role="tabpanel">
+                        Содержимое
+                    </div>
+                </div>
 
-</html>
+            </div>
+        </div>
+        
+        <div class="modal fade dialogbox" id="DialogBasic" data-backdrop="static" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Добавить упражнение?</h5>
+                    </div>
+                    <div class="modal-body">
+                        Вы хотите добавить упражнение "Жим лёжа" в свой список упражнений?
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-inline">
+                            <a href="#" class="btn btn-text-secondary" data-dismiss="modal">ЗАКРЫТЬ</a>
+                            <a href="#" class="btn btn-text-primary" data-dismiss="modal">ДОБАВИТЬ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% include "components/bottom_menu.html" %}
+
+
+    </div>
+    <!-- * App Capsule -->
+
+    {% include "components/footer.html" %}

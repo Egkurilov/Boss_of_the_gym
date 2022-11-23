@@ -16,8 +16,9 @@ class LoginView(View):
             password = re.match(r'[а-яА-Яa-zA-Z0-9]*', password)
         if login.group(0) and password.group(0):
             if not User.objects.values().filter(email=login.group(0)):
-                 return render(request, 'autorization/login_page.html', context={'error': 'Пользователя не существует'})
-
+                request.session['id'] = User.objects.values(id)
+                return render(request, 'autorization/login_page.html', context={'error': 'Пользователя не существует'})
+                 
         return redirect('/')
 
 
@@ -37,7 +38,7 @@ class RegisterView(View):
                 return render(request, 'autorization/registration.html', context={'error': 'пользователь существует'})
 
             User.objects.create(user_name=login.group(0), password=password.group(0), last_activity="1", 
-                                email=login.group(0), date_joined="1", age="10", weight="11", avatar="1")
+                                email='Shaneque@yandex.ru', date_joined="1", age="10", weight="11", avatar="1")
             request.session['login'] = login.group(0)
             return redirect('/')
 

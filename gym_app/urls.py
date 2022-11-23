@@ -1,6 +1,8 @@
 from django.urls import path
-from gym_app import views
+from gym_app.views import CatalogView, AddView
 
 urlpatterns = [
-    path("", views.gym_app, name="gym_app"),
+    path("", CatalogView.as_view()),
+    path("catalog", CatalogView.as_view()),
+    path("add", AddView.as_view()),
 ]

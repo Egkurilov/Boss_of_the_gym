@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'autorization',
     'gym_app',
     'exercises',
+    'statistic',
 ]
 
 MIDDLEWARE = [

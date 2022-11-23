@@ -20,5 +20,6 @@ urlpatterns = [
     path("", include("gym_app.urls")),
     path("auth/", include("autorization.urls")),
     path("user/", include("account.urls")),
+    path("statistic/", include("statistic.urls")),
     path('admin/', admin.site.urls),
 ]
