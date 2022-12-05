@@ -41,3 +41,12 @@
 .section-title.rating {
     justify-content: center;
 }
+.toast-box.auth.toast-top.show {
+    top: 0;
+}
+.appHeader {
+    z-index: 1;
+}
+.toast-box {
+    z-index: 10;
+}

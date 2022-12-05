@@ -27,22 +27,20 @@ class RegisterView(View):
         return render(request, 'autorization/registration.html')
 
     def post(self, request):
-
-        login = request.POST.get('login')
+        email = request.POST.get('email')
         password = request.POST.get('password')
-        if login and password:
-            login = re.match(r'[а-яА-Яa-zA-Z0-9]*', login)
+        if email and password:
+            email = re.match(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+', email)
             password = re.match(r'[а-яА-Яa-zA-Z0-9]*', password)
-        if login.group(0) and password.group(0):
-            if User.objects.values().filter(user_name=login.group(0)):
+        if email.group(0) and password.group(0):
+            if User.objects.values().filter(email=email.group(0)):
                 return render(request, 'autorization/registration.html', context={'error': 'пользователь существует'})
 
-            User.objects.create(user_name=login.group(0), password=password.group(0), last_activity="1", 
-                                email='Shaneque@yandex.ru', date_joined="1", age="10", weight="11", avatar="1")
-            request.session['login'] = login.group(0)
-            return redirect('/')
-
-        return render(request, 'auth/registration.html')
+            User.objects.create(password=password.group(0), email=email.group(0))
+            
+            user_id = User.objects.values('id').filter(email=email.group(0))
+            request.session['id'] = user_id[0]['id']
+        return render(request, 'autorization/login_page.html')
 
 class ForgetView(View):
     def get(self, request):

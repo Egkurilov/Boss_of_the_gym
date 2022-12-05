@@ -18,11 +18,12 @@
         <div class="section full mb-3">
             <div class="wide-block pb-2">
 
-                <form>
+                <form id="settings-form">
+                    {% csrf_token %}
                     <div class="form-group basic">
                         <div class="input-wrapper">
-                            <label class="label" for="name2">Имя</label>
-                            <input type="text" class="form-control" id="name2" placeholder="Введите имя">
+                            <label class="label" for="name">Имя</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Введите имя">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -30,8 +31,8 @@
                     </div>
                     <div class="form-group basic">
                         <div class="input-wrapper">
-                            <label class="label" for="name2">Возраст</label>
-                            <input type="text" class="form-control" id="name2" placeholder="Введите возраст">
+                            <label class="label" for="age">Возраст</label>
+                            <input type="text" name="age" class="form-control" id="age" placeholder="Введите возраст">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -39,8 +40,8 @@
                     </div>
                     <div class="form-group basic">
                         <div class="input-wrapper">
-                            <label class="label" for="name2">Вес</label>
-                            <input type="text" class="form-control" id="name2" placeholder="Введите вес">
+                            <label class="label" for="weight">Вес</label>
+                            <input type="text" name="weight" class="form-control" id="weight" placeholder="Введите вес">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -57,7 +58,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-success btn-sm btn-block mt-1">Сохранить</button>
+                    <button type="submit" class="btn btn-success btn-sm btn-block mt-1">Сохранить</button>
                 </form>
 
             </div>
