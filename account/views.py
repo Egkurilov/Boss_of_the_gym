@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views import View
 from autorization.models import User
 from django.http import JsonResponse
+import base64
 import logging
 logger = logging.getLogger(__name__)
 
@@ -13,7 +14,18 @@ def profile(request):
 
 class ProfileView(View):
     def get(self, request):
-        return render(request, 'user/profile.html')
+        user_data = User.objects.values().filter(id=request.session['id']).first()
+        
+        return render(request, 'user/profile.html', context={'user_data': user_data })
+
+class Image(View):
+    def post(self, request):
+        #TODO сделать ресайз картинки
+        #TODO проверка что это картинка
+        avatar = request.FILES['avatar'].read()
+        User.objects.values().filter(id=request.session['id']).update(avatar=base64.b64encode(avatar).decode('utf-8'))
+        logger.info("user uploadded new avatar")
+        return JsonResponse({'result': "success", 'message': 'OK'})
 
 
 class SettingsView(View):
