@@ -2,17 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from autorization.models import User
-
-class MyError(Exception):
- 
-    # Constructor or Initializer
-    def __init__(self, value):
-        self.value = value
- 
-    # __str__ is to print() the value
-    def __str__(self):
-        return(repr(self.value))
-
+from django.http import JsonResponse
+import logging
+logger = logging.getLogger(__name__)
 
 
 def profile(request):
@@ -23,20 +15,35 @@ class ProfileView(View):
     def get(self, request):
         return render(request, 'user/profile.html')
 
+
 class SettingsView(View):
     def get(self, request):
-        return render(request, 'user/settings.html')
+        user_data = User.objects.values().filter(id=request.session['id']).first()
+        return render(request, 'user/settings.html', context={'user_data': user_data})
 
     def post(self, request):
         try:
             name = request.POST.get('name')
             age = request.POST.get('age')
             weight = request.POST.get('weight')
-        except MyError as error:
-            print('A New Exception occurred: ', error.value)
-            return render(request, 'user/settings.html') 
 
-        User.objects.values().filter(id=request.session['id']).update(user_name=name, age=age, weight=weight)
+            if not str(age).isnumeric():
+                raise Exception('Введите возраст в корректном формате') 
+            age = int(age)
+            if age < 10 or age > 80:
+                raise Exception('Введите возраст в корректном формате') 
 
+            if not str(weight).isnumeric():
+                raise Exception('Введите вес в корректном формате') 
+            weight = int(weight)
+            if weight < 10 or weight > 150:
+                raise Exception('Введите вес в корректном формате') 
 
-        return render(request, 'user/settings.html')
+            User.objects.values().filter(id=request.session['id']).update(user_name=name, age=age, weight=weight)
+            logger.info("GET USER DATA PROFILE")
+        except Exception as error:
+            return JsonResponse({'result': "error", 'message': str(error)})
+
+        
+        
+        return JsonResponse({'result': "success", 'message': 'OK'})

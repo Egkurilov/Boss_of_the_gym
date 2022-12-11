@@ -41,12 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+]
+
+APPS = [
     'autorization',
     'gym_app',
     'exercises',
     'statistic',
-    'debug_toolbar',
+    'account',
 ]
+
+INSTALLED_APPS += APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,18 +118,34 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+        'format': '[%(asctime)s] [%(process)-5d] [%(levelname)-5s] %(name)s: %(message)s',
+        'datefmt': '%Y-%m-%d %H:%M:%S %z',
+        },
+    },
     'handlers': {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
+            'formatter': 'default',
         },
     },
     'loggers': {
+        **{
+            app_name: {'handlers': ['file'], 'level': 'INFO'}
+            for app_name in sorted(APPS)
+        },
         'django': {
             'handlers': ['file'],
             'level': 'INFO',
             'propagate': True,
+        },
+            'django.server': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': False,
         },
     },
 }
