@@ -17,33 +17,28 @@
             <div class="section-title">Добавить упражнение</div>
             <div class="wide-block full">
 
+
                 <ul class="nav nav-tabs lined" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#strength" role="tab" aria-selected="true">
-                            Силовые
+                    {% for key, value in  exercise.items %}
+                   <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#{{ key }}" role="tab" aria-selected="true">
+                            {{ value.name }}
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#cardio" role="tab" aria-selected="false">
-                            Кардио
-                        </a>
-                    </li>
+                     {% endfor %}
                 </ul>
+
+
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="strength" role="tabpanel">
+                {% for key, value in  exercise.items %}
+                    <div class="tab-pane fade" id="{{ key }}" role="tabpanel">
                         <ul class="listview link-listview calalog">
-                            <li><a href="#" data-toggle="modal" data-target="#DialogBasic">Жим лёжа</a></li>
-                            <li class="remove"><a href="#">Жим лёжа</a></li>
-                            <li class="remove"><a href="#">Жим лёжа</a></li>
-                            <li class="remove"><a href="#">Жим лёжа</a></li>
-                            <li><a href="#">Жим лёжа</a></li>
-                            <li><a href="#">Жим лёжа</a></li>
-                            <li><a href="#">Жим лёжа</a></li>
+                            {% for value in value.data %}
+                            <li><a href="#"  class="exersise-to-user" data-exersise-id="{{ value.type_id }}">{{ value.type__exerciselist__name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
-                    <div class="tab-pane fade" id="cardio" role="tabpanel">
-                        Содержимое
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>
@@ -61,7 +56,12 @@
                     <div class="modal-footer">
                         <div class="btn-inline">
                             <a href="#" class="btn btn-text-secondary" data-dismiss="modal">ЗАКРЫТЬ</a>
-                            <a href="#" class="btn btn-text-primary" data-dismiss="modal">ДОБАВИТЬ</a>
+                                <form action="#" id="useradd-ex-form">
+                                <input type="hidden" name="ex-id" value="">
+                                    <button type="submit" class="btn btn-text-primary" data-bs-dismiss="modal">
+                                    Добавить
+                                    </button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="h.shaneque.ru" id="b7a5c74f-d146-4752-a1e1-f6384ce76b5e" port="50001" nameFormat="DESCRIPTIVE" username="shanepython" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7543df15-094b-45cb-afd3-c8d944f836ff" name="PYTHON DEV">
+        <fileTransfer rootFolder="/home/shanepython" accessType="SFTP" host="h.shaneque.ru" port="50001" sshConfigId="b7a5c74f-d146-4752-a1e1-f6384ce76b5e" sshConfig="shanepython@h.shaneque.ru:50001 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
