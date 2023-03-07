@@ -32,7 +32,7 @@
                 <h4>Регистрация</h4>
             </div>
             <div class="section mt-1 mb-5">
-                <form action="/auth/register" method="POST">
+                <form id="register_form" action="/auth/register" method="POST">
                     {% csrf_token %}
                     <div class="form-group boxed">
                         <div class="input-wrapper">
@@ -45,13 +45,20 @@
 
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="password" name="password" class="form-control" id="password1" placeholder="Пароль">
+                            <input type="password" name="password1" class="form-control" id="password1" placeholder="Пароль">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
                         </div>
                     </div>
-
+                    <div class="form-group boxed">
+                        <div class="input-wrapper">
+                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Повторите пароль">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
+                        </div>
+                    </div>
                     <div class="form-links mt-2">
                         <div>
                             <a href="/auth/register">Регистрация</a>
@@ -74,24 +81,4 @@
     </div>
     <!-- * App Capsule -->
 
-
-
-    <!-- ///////////// Js Files ////////////////////  -->
-    <!-- Jquery -->
-    <script src="/static/assets/js/lib/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap-->
-    <script src="/static/assets/js/lib/popper.min.js"></script>
-    <script src="/static/assets/js/lib/bootstrap.min.js"></script>
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <!-- Owl Carousel -->
-    <script src="/static/assets/js/plugins/owl-carousel/owl.carousel.min.js"></script>
-    <!-- jQuery Circle Progress -->
-    <script src="/static/assets/js/plugins/jquery-circle-progress/circle-progress.min.js"></script>
-    <!-- Base Js File -->
-    <script src="/static/assets/js/base.js"></script>
-
-
-</body>
-
-</html>
+    {% include "components/footer.html" %}

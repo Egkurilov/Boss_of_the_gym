@@ -50,3 +50,32 @@ $(document).on('click', ".exersise-to-user", function (e) {
         return _noty(response.message, 'success');
     }, "json");
 })
+$(document).on('submit', '#register_form', function (e) {
+    e.preventDefault()
+    $this = $(this)
+    let button = $this.find('[type="submit"]').addClass('btn-loading');
+    $.post($(this).attr('action'), $(this).serialize(), function (response, textStatus, jqXHR) {
+        if (response.result == 'error') {
+            button.removeClass('btn-loading');
+            return _noty('error', response.message);
+        }
+        setTimeout(() => {
+            location.href = "/";
+        }, 800);
+    }, "json");
+
+}).on('submit', '#login_form', function (e) {
+    e.preventDefault()
+    $this = $(this)
+    let button = $this.find('[type="submit"]').addClass('btn-loading');
+    $.post($(this).attr('action'), $(this).serialize(), function (response, textStatus, jqXHR) {
+        if (response.result == 'error') {
+            button.removeClass('btn-loading');
+            return _noty('error', response.message);
+        }
+        setTimeout(() => {
+            location.href = "/";
+        }, 800);
+    }, "json");
+
+})

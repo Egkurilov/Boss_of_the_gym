@@ -1,48 +1,52 @@
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import User
-import re
+
+from .forms import LoginForm, RegisterForm
+
 
 class LoginView(View):
     def get(self, request):
-        return render(request, 'autorization/login_page.html')
+        context = {'redirect': request.GET.get('next', '/catalog')}
+        return render(request, 'autorization/login_page.html', context=context)
 
     def post(self, request):
-        login = request.POST.get('email')
-        password = request.POST.get('password')
+        print(request.POST)
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+            login(request, user)
+            return JsonResponse(
+                {'result': 'success', 'message': 'Вы успешно авторизрованы', 'redirect': request.POST['redirect']})
 
-        if login and password:
-            login = re.match(r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', login)
-            password = re.match(r'[а-яА-Яa-zA-Z0-9]*', password)
-        if login.group(0) and password.group(0):
-            if not User.objects.values().filter(email=login.group(0)):
-                request.session['id'] = User.objects.values(id)
-                return render(request, 'autorization/login_page.html', context={'error': 'Пользователя не существует'})
-                 
-        return redirect('/')
+        return JsonResponse({'result': 'error', 'message': form.custom_single_error})
 
 
 class RegisterView(View):
     def get(self, request):
-        return render(request, 'autorization/registration.html')
+
+        if request.user.is_authenticated:
+            return redirect('/catalog', permanent=True)
+
+        context = {'title': 'Регистрация'}
+        return render(request, 'autorization/registration.html', context=context)
 
     def post(self, request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        if email and password:
-            email = re.match(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+', email)
-            password = re.match(r'[а-яА-Яa-zA-Z0-9]*', password)
-        if email.group(0) and password.group(0):
-            if User.objects.values().filter(email=email.group(0)):
-                return render(request, 'autorization/registration.html', context={'error': 'пользователь существует'})
+        form = RegisterForm(data=request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = request.POST.get("email")
+            user.set_password(request.POST.get('password1'))
+            user.save()
+            login(request, user)
+            return JsonResponse(
+                {'result': 'success', 'message': 'Вы успешно зарегистрированы'})
 
-            User.objects.create(password=password.group(0), email=email.group(0))
-            
-            user_id = User.objects.values('id').filter(email=email.group(0))
-            request.session['id'] = user_id[0]['id']
-        return render(request, 'autorization/login_page.html')
+        print(form.errors)
+        return JsonResponse({'result': 'error', 'message': form.custom_single_error})
+
 
 class ForgetView(View):
     def get(self, request):
         return render(request, 'autorization/forget_password.html')
-

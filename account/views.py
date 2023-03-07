@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
-from autorization.models import User
+from .models import User
 from django.http import JsonResponse
 import base64
 import logging
@@ -15,7 +15,7 @@ def profile(request):
 
 class ProfileView(View):
     def get(self, request):
-        user_data = User.objects.values().filter(id=request.session['id']).first()
+        user_data = User.objects.values().filter(id=request.user.id).first()
 
         return render(request, 'user/profile.html', context={'user_data': user_data})
 
@@ -25,14 +25,14 @@ class Image(View):
         # TODO сделать ресайз картинки
         # TODO проверка что это картинка
         avatar = request.FILES['avatar'].read()
-        User.objects.values().filter(id=request.session['id']).update(avatar=base64.b64encode(avatar).decode('utf-8'))
+        User.objects.values().filter(id=request.user.id).update(avatar=base64.b64encode(avatar).decode('utf-8'))
         logger.info("user uploadded new avatar")
         return JsonResponse({'result': "success", 'message': 'OK'})
 
 
 class SettingsView(View):
     def get(self, request):
-        user_data = User.objects.values().filter(id=request.session['id']).first()
+        user_data = User.objects.values().filter(id=request.user.id).first()
         return render(request, 'user/settings.html', context={'user_data': user_data})
 
     def post(self, request):
@@ -53,7 +53,7 @@ class SettingsView(View):
             if weight < 10 or weight > 150:
                 raise Exception('Введите вес в корректном формате')
 
-            User.objects.values().filter(id=request.session['id']).update(user_name=name, age=age, weight=weight)
+            User.objects.values().filter(id=request.user.id).update(first_name=name, datebirth=15, weight=weight)
             logger.info("GET USER DATA PROFILE")
         except Exception as error:
             return JsonResponse({'result': "error", 'message': str(error)})

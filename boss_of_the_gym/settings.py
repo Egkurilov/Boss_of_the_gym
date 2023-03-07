@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -58,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -85,7 +84,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'boss_of_the_gym.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -95,7 +93,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -120,8 +117,8 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'default': {
-        'format': '[%(asctime)s] [%(process)-5d] [%(levelname)-5s] %(name)s: %(message)s',
-        'datefmt': '%Y-%m-%d %H:%M:%S %z',
+            'format': '[%(asctime)s] [%(process)-5d] [%(levelname)-5s] %(name)s: %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S %z',
         },
     },
     'handlers': {
@@ -142,14 +139,13 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-            'django.server': {
+        'django.server': {
             'handlers': ['file'],
             'level': 'ERROR',
             'propagate': False,
         },
     },
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -162,7 +158,6 @@ USE_I18N = True
 
 USE_TZ = False
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -173,3 +168,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGOUT_REDIRECT_URL = "/auth/login"
+
+AUTH_USER_MODEL = 'account.User'
