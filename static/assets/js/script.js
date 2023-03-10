@@ -36,8 +36,8 @@ const _noty = (type, message, time = 3000) => {
 $(document).on('click', ".exersise-to-user", function (e) {
     $this = $(this)
     e.preventDefault()
-    $('#DialogBasic').modal('show').find(`input[name="ex-id"]`).val($(this).data('exersise-id'));
-    $('#DialogBasic').find(".modal-body").text(`Вы хотите добавить упражнение "${$this.text()}" в свой список упражнений?`)
+    $('#DialogExtoUser').modal('show').find(`input[name="ex-id"]`).val($(this).data('exersise-id'));
+    $('#DialogExtoUser').find(".modal-body").text(`Вы хотите добавить упражнение "${$this.text()}" в свой список упражнений?`)
 }).on('submit', '#useradd-ex-form', function (e) {
     e.preventDefault()
     $.post("task/add", $("#useradd-ex-form").serialize(), function (response, textStatus, jqXHR) {
@@ -47,6 +47,7 @@ $(document).on('click', ".exersise-to-user", function (e) {
         $this.parents('.task-item').slideUp("fast", function () {
             $(this).remove()
         })
+        $("#DialogExtoUser").modal('hide')
         return _noty(response.message, 'success');
     }, "json");
 })

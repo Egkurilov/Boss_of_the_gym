@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 from exercises.models import ExerciseList
@@ -24,5 +25,4 @@ class ExerciseToUser(View):
     def post(self, request):
         ExerciseToUserModel.objects.create(exercise_id=request.POST['ex-id'], user_id=request.user.id)
 
-
-        return render(request, 'gym_app/add_execises.html')
+        return JsonResponse({'result': 'success'})
