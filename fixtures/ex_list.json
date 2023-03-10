@@ -1,0 +1,92 @@
+[
+   {
+      "model":"exercises.exerciselist",
+      "pk":1,
+      "fields":{
+         "type":1,
+         "name":"Жим Лежа",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":2,
+      "fields":{
+         "type":2,
+         "name":"Беговая дорожка",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":3,
+      "fields":{
+         "type":1,
+         "name":"Отжимания",
+         "cost":"2"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":4,
+      "fields":{
+         "type":1,
+         "name":"Приседания",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":5,
+      "fields":{
+         "type":1,
+         "name":"Выпады вперед",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":6,
+      "fields":{
+         "type":1,
+         "name":"Жим гантелей",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":7,
+      "fields":{
+         "type":1,
+         "name":"Отжимания от скамьи",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":8,
+      "fields":{
+         "type":2,
+         "name":"Берпи",
+         "cost":"2"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":9,
+      "fields":{
+         "type":2,
+         "name":"Бег на месте",
+         "cost":"1"
+      }
+   },
+   {
+      "model":"exercises.exerciselist",
+      "pk":10,
+      "fields":{
+         "type":2,
+         "name":"Скакалка",
+         "cost":"1"
+      }
+   }
+]

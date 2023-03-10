@@ -1,0 +1,18 @@
+[
+   {
+      "model":"exercises.exercisetype",
+      "pk":1,
+      "fields":{
+         "type":"Силовые",
+         "typecode":"Strength"
+      }
+   },
+   {
+      "model":"exercises.exercisetype",
+      "pk":2,
+      "fields":{
+         "type":"Кардио",
+         "typecode":"Cardio"
+      }
+   }
+]
