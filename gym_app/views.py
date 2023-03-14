@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from exercises.models import ExerciseList
+from exercises.models import ExerciseList, ExerciseUserResult
 from exercises.models import ExerciseType
 from exercises.models import ExerciseToUserModel
 from django.db.models import Subquery
@@ -70,6 +70,16 @@ class AddView(View):
             "gym_app/add_execises.html",
             context={"user_exercise": user_exercise},
         )
+
+    def post(self, request):
+        ExerciseUserResult.objects.create(
+            user_id=request.user.id,
+            repeat=request.POST["repeat"],
+            weight=request.POST["weight"],
+            exercise_id=request.POST["exercise-id"],
+        )
+
+        return JsonResponse({"result": "success"})
 
 
 class ExerciseToUser(View):

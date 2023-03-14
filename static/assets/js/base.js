@@ -394,6 +394,18 @@ $('.custom-file-upload input[type="file"]').each(function () {
     $fileUpload.on('change', function (event) {
         var name = $fileUpload.val().split('\\').pop(),
             tmppath = URL.createObjectURL(event.target.files[0]);
+        var formData = new FormData();
+        formData.append('avatar', event.target.files[0]);
+        $.ajax({
+            url: '/user/settings/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(html){
+                alert(html);
+            }
+        });
         if (name) {
             $filelabel
                 .addClass('file-uploaded')

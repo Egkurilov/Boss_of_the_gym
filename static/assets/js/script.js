@@ -80,3 +80,14 @@ $(document).on('submit', '#register_form', function (e) {
     }, "json");
 
 })
+$(document).on('submit', '.add-exercises-to-user', function (e) {
+    e.preventDefault()
+    $this = $(this)
+    let button = $this.find('[type="submit"]').addClass('btn-loading');
+    $.post($(this).attr('action'), $(this).serialize(), function (response, textStatus, jqXHR) {
+        if (response.result == 'error') {
+            button.removeClass('btn-loading');
+            return _noty('error', response.message);
+        }
+    }, "json");
+})

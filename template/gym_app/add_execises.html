@@ -40,13 +40,15 @@
                                 </div>
                                 <div id="accordion{{ data.exercise_id }}" class="accordion-body collapse"
                                     data-parent="#accordionExample1">
+                                    <form action="/add" class="add-exercises-to-user">
+                                        <input type="hidden" name="exercise-id" value="{{ data.exercise_id }}">
                                     <div class="accordion-content border-bottom">
                                         <div class="row">
                                             <div class="col-6">
                                                 <div class="form-group boxed">
                                                     <div class="input-wrapper">
                                                         <label class="label" for="name5">Повторений</label>
-                                                        <select class="form-control custom-select">
+                                                        <select class="form-control custom-select" name="repeat">
                                                             <option selected disabled hidden>Количество</option>
                                                             <option>1</option>
                                                             <option>2</option>
@@ -58,6 +60,8 @@
                                                             <option>8</option>
                                                             <option>9</option>
                                                             <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -66,7 +70,7 @@
                                                 <div class="form-group boxed">
                                                     <div class="input-wrapper">
                                                         <label class="label" for="name5">Вес</label>
-                                                        <input type="number" class="form-control" id="name5"
+                                                        <input type="number" class="form-control" name="weight"
                                                             min="1" max="200" pattern="\d*">
                                                         <i class="clear-input">
                                                             <ion-icon name="close-circle" role="img"
@@ -77,10 +81,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-outline-success btn-block mt-1">
+                                        <button type="submit" class="btn btn-outline-success btn-block mt-1">
                                         Сохранить
                                         </button>
                                     </div>
+
+                                    </form>
                                 </div>
                             </div>
                             {% endfor %}
