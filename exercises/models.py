@@ -10,6 +10,9 @@ class ExerciseType(models.Model):
     class Meta:
         db_table = "exercise_type"
 
+    def __str__(self):
+        return self.type
+
 
 class ExerciseList(models.Model):
     type = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
@@ -21,7 +24,7 @@ class ExerciseList(models.Model):
 
 
 class ExerciseToUserModel(models.Model):
-    exercise = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(ExerciseList, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:

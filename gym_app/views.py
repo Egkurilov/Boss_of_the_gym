@@ -13,16 +13,22 @@ class CatalogView(View):
         exercises = (
             ExerciseList.objects.select_related("type")
             .values(
-                "type__typecode", "type__type", "type__exerciselist__name", "type_id"
+                "type__typecode",
+                "type__type",
+                "type__exerciselist__name",
+                "type_id",
+                "type__exerciselist",
             )
             .distinct()
         )
+
         exercise = {}
         for ex in exercises:
             exercise.setdefault(
                 ex["type__typecode"], {"name": ex["type__type"], "data": []}
             )
             exercise[ex["type__typecode"]]["data"].append(ex)
+
         return render(request, "gym_app/main_page.html", context={"exercise": exercise})
 
 
@@ -78,7 +84,7 @@ class AddView(View):
             weight=request.POST["weight"],
             exercise_id=request.POST["exercise-id"],
         )
-
+        print(request.POST)
         return JsonResponse({"result": "success"})
 
 

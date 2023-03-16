@@ -25,12 +25,13 @@
             </ul>
             <div class="tab-content">
                 {% for key, value in  exercise.items %}
+
                 <div class="tab-pane fade{% if key == "Strength" %} active show {% endif %}" id="{{ key }}"
                 role="tabpanel">
                 <ul class="listview link-listview calalog">
                     {% for value in value.data %}
                     <li><a href="#" class="exersise-to-user"
-                        data-exersise-id="{{ value.type_id }}">{{ value.type__exerciselist__name }}</a>
+                        data-exersise-id="{{ value.type__exerciselist }}">{{ value.type__exerciselist__name }}</a>
                     </li>
                     {% endfor %}
                 </ul>
