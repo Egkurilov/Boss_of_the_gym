@@ -84,8 +84,10 @@ class AddView(View):
             weight=request.POST["weight"],
             exercise_id=request.POST["exercise-id"],
         )
-        print(request.POST)
-        return JsonResponse({"result": "success"})
+
+        return JsonResponse(
+            {"result": "success", "message": "Результат успешно добавлен"}
+        )
 
 
 class ExerciseToUser(View):

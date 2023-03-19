@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from autorization.views import RegisterView
+
 urlpatterns = [
     path("", include("gym_app.urls")),
     path("auth/", include("autorization.urls")),
     path("user/", include("account.urls")),
     path("statistic/", include("statistic.urls")),
-    path('admin/', admin.site.urls),
-    path('__debug__/', include('debug_toolbar.urls')),
+    path("admin/", admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]

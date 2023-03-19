@@ -78,7 +78,6 @@ $(document).on('submit', '#register_form', function (e) {
             location.href = "/";
         }, 800);
     }, "json");
-
 })
 $(document).on('submit', '.add-exercises-to-user', function (e) {
     e.preventDefault()
@@ -89,5 +88,6 @@ $(document).on('submit', '.add-exercises-to-user', function (e) {
             button.removeClass('btn-loading');
             return _noty('error', response.message);
         }
+        return _noty('success', response.message);
     }, "json");
 })

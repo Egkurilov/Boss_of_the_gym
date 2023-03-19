@@ -32,7 +32,7 @@ class ExerciseToUserModel(models.Model):
 
 
 class ExerciseUserResult(models.Model):
-    exercise = models.ForeignKey(ExerciseType, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(ExerciseList, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     weight = models.CharField(max_length=255, default=None)
     repeat = models.CharField(max_length=255, default=None)
