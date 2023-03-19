@@ -50,6 +50,7 @@ APPS = [
     "exercises",
     "statistic",
     "account",
+    "support",
 ]
 
 INSTALLED_APPS += APPS
