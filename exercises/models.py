@@ -27,6 +27,7 @@ class ExerciseToUserModel(models.Model):
     exercise = models.ForeignKey(ExerciseList, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
     class Meta:
         db_table = "exercise_user"
 
@@ -36,6 +37,7 @@ class ExerciseUserResult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     weight = models.CharField(max_length=255, default=None)
     repeat = models.CharField(max_length=255, default=None)
+    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = "exercise_result"
