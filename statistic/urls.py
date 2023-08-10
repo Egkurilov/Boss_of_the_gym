@@ -1,7 +1,8 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 from statistic.views import StatisticView
 
 urlpatterns = [
-    path("", StatisticView.as_view()),
+    path("", login_required(StatisticView.as_view())),
 
 ]

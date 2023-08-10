@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from account.models import User
 from django.contrib.auth import authenticate
 
+
 class LoginForm(ModelForm):
     class Meta:
         model = User
@@ -36,8 +37,8 @@ class LoginForm(ModelForm):
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(
         error_messages={
-            'required': 'Введите логин SIGMA',
-            'invalid': 'Введите корректный логин SIGMA',
+            'required': 'Введите логин',
+            'invalid': 'Введите корректный логин',
         }
     )
     password1 = forms.CharField(
