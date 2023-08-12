@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% include "components/header.html" %}
 
-</body>
-</html>
+<!-- App Capsule -->
+<div id="appCapsule">
+
+    <div class="appHeader">
+        <div class="left">
+            <a href="#" class="headerButton">
+                <ion-icon name="chevron-back-outline" role="img" class="md hydrated" aria-label="chevron back outline">
+                </ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">GYM APP</div>
+    </div>
+
+    <div class="section full mt-1">
+        <div class="section-title">Мои обращения</div>
+        <div class="wide-block pt-2 pb-2">
+
+          <ul class="listview link-listview calalog">
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="1">Обращение1</a>
+                    </li>
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="3">Обращение1</a>
+                    </li>
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="4">Обращение1</a>
+                    </li>
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="5">Обращение1</a>
+                    </li>
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="6">Обращение1</a>
+                    </li>
+
+                    <li><a href="#" class="exersise-to-user" data-exersise-id="7">Обращение1</a>
+                    </li>
+
+                </ul>
+
+        </div>
+    </div>
+
+    {% include "components/bottom_menu.html" %}
+
+
+</div>
+<!-- * App Capsule -->
+
+{% include "components/footer.html" %}
