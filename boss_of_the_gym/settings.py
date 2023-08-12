@@ -175,3 +175,4 @@ LOGOUT_REDIRECT_URL = "/auth/login"
 LOGIN_URL = "/auth/login"
 
 AUTH_USER_MODEL = "account.User"
+#test commint
