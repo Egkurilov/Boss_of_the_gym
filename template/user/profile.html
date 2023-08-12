@@ -20,7 +20,7 @@
                     <img src="data:image/png;base64, {{ user_data.avatar }}" class="imaged w64 rounded">
                 </div>
                 <div class="in">
-                    <h3 class="name">Имя</h3>
+                    <h3 class="name">{{ user_data.first_name }}</h3>
                     <h5 class="subtext">Онлайн</h5>
                 </div>
                 <div class="profile-settings">
@@ -36,10 +36,10 @@
         <div class="wide-block section full mt-2">
             <div class="profile-stats pl-2 pr-2 pt-1 pb-1">
                 <a href="#" class="item">
-                    <strong>0</strong>Возраст
+                    <strong>{{ user_data.datebirth }}</strong>Возраст
                 </a>
                 <a href="#" class="item">
-                    <strong>0</strong>Вес
+                    <strong>{{ user_data.weight }}</strong>Вес
                 </a>
                 <a href="#" class="item">
                     <strong>0</strong>Очко недели

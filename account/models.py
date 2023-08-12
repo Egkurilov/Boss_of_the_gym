@@ -8,4 +8,4 @@ class User(AbstractUser):
     gender = models.CharField(max_length=500, blank=True)
     weight = models.CharField(max_length=30, blank=True)
     datebirth = models.CharField(max_length=30, null=True, blank=True)
-    avatar = models.ImageField(default='', blank=True)
+    avatar = models.ImageField(default='static/assets/img/icon/72x72.png', blank=True)

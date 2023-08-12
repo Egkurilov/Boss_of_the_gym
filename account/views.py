@@ -16,6 +16,7 @@ def profile(request):
 class ProfileView(View):
     def get(self, request):
         user_data = User.objects.values().filter(id=request.user.id).first()
+        print("==-==",user_data)
         return render(request, "user/profile.html", context={"user_data": user_data})
 
 
