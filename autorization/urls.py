@@ -7,8 +7,8 @@ from autorization.views import ForgetView
 
 
 urlpatterns = [
-    path('login', LoginView.as_view()),
-    path('register', RegisterView.as_view()),
-    path('forget', ForgetView.as_view()),
+    path('login', LoginView.as_view(), name='account_login'),
+    path('register', RegisterView.as_view(), name='account_register'),
+    path('forget', ForgetView.as_view(), name='account_forget'),
     path('logout', LogoutView.as_view(), name='account_logout'),
 ]
