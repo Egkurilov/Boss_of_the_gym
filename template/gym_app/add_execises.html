@@ -14,77 +14,66 @@
         <div class="section-title">Добавить результат тренировки</div>
         <div class="wide-block full">
             <ul class="nav nav-tabs lined" role="tablist">
-                {% for  exercise_key, exercise_value in  user_exercise.items %}
+                {% for exercise_key, exercise_value in user_exercise.items %}
                 <li class="nav-item">
                     <a class="nav-link {% if exercise_key == 1 %} active {% endif %}" data-toggle="tab"
                         href="#{{ exercise_value.typecode }}" role="tab" aria-selected="true">
-                    {{ exercise_value.name }}
+                        {{ exercise_value.name }}
                     </a>
                 </li>
                 {% endfor %}
             </ul>
             <div class="tab-content">
-                {% for  ex_list_key, ex_list_value in  user_exercise.items %}
+                {% for ex_list_key, ex_list_value in user_exercise.items %}
                 <div class="tab-pane fade {% if ex_list_key == 1 %} active show {% endif %}"
                     id="{{ ex_list_value.typecode }}" role="tabpanel">
                     <div class="full">
                         <div class="accordion full-list" id="accordionExample1">
-                            {% for  data in  ex_list_value.data %}
+                            {% for data in ex_list_value.data %}
                             <div class="item">
                                 <div class="accordion-header">
                                     <button class="btn collapsed" type="button" data-toggle="collapse"
-                                        data-target="#accordion{{ data.exercise_id }}"
-                                        aria-expanded="false">
-                                    {{ data.exercise_name }}
+                                        data-target="#accordion{{ data.exercise_id }}" aria-expanded="false">
+                                        {{ data.exercise_name }}
                                     </button>
                                 </div>
                                 <div id="accordion{{ data.exercise_id }}" class="accordion-body collapse"
                                     data-parent="#accordionExample1">
                                     <form action="/add" class="add-exercises-to-user">
                                         <input type="hidden" name="exercise-id" value="{{ data.exercise_id }}">
-                                    <div class="accordion-content border-bottom">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group boxed">
-                                                    <div class="input-wrapper">
-                                                        <label class="label" for="name5">Повторений</label>
-                                                        <select class="form-control custom-select" name="repeat">
-                                                            <option selected disabled hidden>Количество</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                        </select>
+                                        <div class="accordion-content border-bottom">
+                                            <div class="row">
+                                                {% for name, option in data.exercise_options.items %}
+                                                <div class="col">
+                                                    <div class="form-group boxed">
+                                                        <div class="input-wrapper">
+                                                            <label class="label" for="name5">{{ option.name }}</label>
+                                                            {% if option.type == 'select' %}
+                                                            <select class="form-control custom-select" name="repeat">
+                                                                <option selected disabled hidden>Выберите</option>
+                                                                {% for choice in option.services %}
+                                                                <option value="{{ choice.value }}">{{ choice.name }}
+                                                                </option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            {% elif option.type == 'field' %}
+                                                            <input type="number" class="form-control" name="name6"
+                                                                min="1" max="200" pattern="\d*">
+                                                            <i class="clear-input">
+                                                                <ion-icon name="close-circle" role="img"
+                                                                    class="md hydrated"
+                                                                    aria-label="close circle"></ion-icon>
+                                                            </i>
+                                                            {% endif %}
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                {% endfor %}
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group boxed">
-                                                    <div class="input-wrapper">
-                                                        <label class="label" for="name5">Вес</label>
-                                                        <input type="number" class="form-control" name="weight"
-                                                            min="1" max="200" pattern="\d*">
-                                                        <i class="clear-input">
-                                                            <ion-icon name="close-circle" role="img"
-                                                                class="md hydrated"
-                                                                aria-label="close circle"></ion-icon>
-                                                        </i>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <button type="submit" class="btn btn-outline-success btn-block mt-1">
+                                                Сохранить
+                                            </button>
                                         </div>
-                                        <button type="submit" class="btn btn-outline-success btn-block mt-1">
-                                        Сохранить
-                                        </button>
-                                    </div>
 
                                     </form>
                                 </div>
@@ -93,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </div>
