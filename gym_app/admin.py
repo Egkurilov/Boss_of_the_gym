@@ -26,9 +26,9 @@ class UserList(admin.ModelAdmin):
         )
 
 
-class Exercises(admin.ModelAdmin):
-    list_display = ("id", "name", "cost")
-    list_filter = ("id", "name")
+class  Exercises(admin.ModelAdmin):
+    list_display = ("id", "name", "cost", "type")
+    list_filter = ("type",)
 
 
 admin.site.register(User, UserList)
