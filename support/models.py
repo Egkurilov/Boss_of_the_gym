@@ -21,3 +21,14 @@ class Ticket(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TicketMessage(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    updated_on = models.DateTimeField(auto_now=True)
+    content = models.TextField()
+
+    class Meta:
+        ordering = ['-updated_on']
+
