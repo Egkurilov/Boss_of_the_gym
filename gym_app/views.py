@@ -59,6 +59,13 @@ class AddView(View):
                 )
             )
             .annotate(
+                exercise_options=Subquery(
+                    ExerciseList.objects.values("options").filter(
+                        id=OuterRef("exercise_id")
+                    )
+                )
+            )
+            .annotate(
                 exercise_type=Subquery(
                     ExerciseList.objects.values("type").filter(
                         id=OuterRef("exercise_id")
@@ -70,6 +77,8 @@ class AddView(View):
 
         for ex_list in exercise_list:
             user_exercise[ex_list["exercise_type"]]["data"].append(ex_list)
+
+        print(user_exercise)
 
         return render(
             request,
