@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 
 # Register your models here.
 from account.models import User
-from exercises.models import ExerciseList
+from exercises.models import ExerciseList, ExerciseType
 
 
 class UserList(admin.ModelAdmin):
@@ -26,10 +26,16 @@ class UserList(admin.ModelAdmin):
         )
 
 
-class  Exercises(admin.ModelAdmin):
+class Exercises(admin.ModelAdmin):
     list_display = ("id", "name", "cost", "type")
     list_filter = ("type",)
 
 
+class ExerciseTypeCategory(admin.ModelAdmin):
+    list_display = ("id", "type", "typecode")
+    list_filter = ("type","typecode")
+
+
 admin.site.register(User, UserList)
 admin.site.register(ExerciseList, Exercises)
+admin.site.register(ExerciseType, ExerciseTypeCategory)
