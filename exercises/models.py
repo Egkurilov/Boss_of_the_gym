@@ -23,7 +23,7 @@ OPTIONS_SCHEMA = {
                 "type": {
                     "type": "string",
                     "title": "Тип",
-                    "required": True,
+                    "required": False,
                     "choices": [
                         {"title": "Поле для ввода", "value": "field"},
                         {"title": "Выпадающий список", "value": "select"},
