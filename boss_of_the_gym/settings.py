@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 APPS = [
-    "autorization",
+    "authorization",
     "gym_app",
     "exercises",
     "statistic",

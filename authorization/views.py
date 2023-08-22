@@ -9,7 +9,7 @@ from .forms import LoginForm, RegisterForm
 class LoginView(View):
     def get(self, request):
         context = {'redirect': request.GET.get('next', '/catalog')}
-        return render(request, 'autorization/login_page.html', context=context)
+        return render(request, 'authorization/login_page.html', context=context)
 
     def post(self, request):
         print(request.POST)
@@ -30,7 +30,7 @@ class RegisterView(View):
             return redirect('/catalog', permanent=True)
 
         context = {'title': 'Регистрация'}
-        return render(request, 'autorization/registration.html', context=context)
+        return render(request, 'authorization/registration.html', context=context)
 
     def post(self, request):
         form = RegisterForm(data=request.POST)
@@ -49,4 +49,4 @@ class RegisterView(View):
 
 class ForgetView(View):
     def get(self, request):
-        return render(request, 'autorization/forget_password.html')
+        return render(request, 'authorization/forget_password.html')
