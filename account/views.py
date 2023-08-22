@@ -64,7 +64,7 @@ class SettingsView(View):
                 raise Exception("Введите вес в корректном формате")
 
             User.objects.values().filter(id=request.user.id).update(
-                first_name=name, datebirth=15, weight=weight
+                first_name=name, datebirth=age, weight=weight
             )
             logger.info("GET USER DATA PROFILE")
         except Exception as error:
