@@ -3,8 +3,10 @@ from django.http import HttpResponse
 from django.views import View
 from .models import User
 from django.http import JsonResponse
+from PIL import Image as PILImage
 import base64
 import logging
+import io
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +27,12 @@ class Image(View):
         # TODO сделать ресайз картинки
         # TODO проверка что это картинка
         avatar = request.FILES["avatar"].read()
+        decodedImage = base64.b64encode(avatar).decode("utf-8")
+        try:
+            PILImage.open(io.BytesIO(decodedImage))
+        except Exception:
+            logger.info("user tried to upload an invalid image file")
+            return JsonResponse({"result": "fail", "message": "Invalid image file"})
         User.objects.values().filter(id=request.user.id).update(
             avatar=base64.b64encode(avatar).decode("utf-8")
         )
