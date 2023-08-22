@@ -25,16 +25,16 @@ class ProfileView(View):
 class Image(View):
     def post(self, request):
         # TODO сделать ресайз картинки
-        # TODO проверка что это картинка
-        avatar = request.FILES["avatar"].read()
-        encodedImage = base64.b64encode(avatar)
+        recievedAvatar = request.FILES["avatar"].read()
+        encodedImage = base64.b64encode(recievedAvatar)
         try:
             PILImage.open(BytesIO(base64.b64decode(encodedImage)))
         except Exception:
             logger.info("user tried to upload an invalid image file")
-            return JsonResponse({"result": "fail", "message": "Invalid image file"})
+            return JsonResponse({"result": "error", "message": "Invalid image file"})
+        
         User.objects.values().filter(id=request.user.id).update(
-            avatar=base64.b64encode(avatar).decode("utf-8")
+            avatar = encodedImage.decode("utf-8")
         )
         logger.info("user uploadded new avatar")
         return JsonResponse({"result": "success", "message": "OK"})

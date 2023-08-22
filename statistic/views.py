@@ -5,26 +5,20 @@ from django.views import View
 
 class StatisticView(View):
     def get(self, request):
-        # TODO Сделать модель, которую можно подгружать из профиля пользователя и заполнение прогресс бара
-        # Сделать подстройку прогресс бара под значения дней недели
-        # Подстройку прогресс бара можно сделать через математический фильтр в шаблоне страницы
+        # TODO заменить заглушку на модель, которую можно подгружать из профиля пользователя
         user_statistics_data = dict(
             monday = 100,
             tuesday = 200,
             wednesday = 300,
             thursday = 400,
             friday = 500,
-            saturday = 700,
+            saturday = 650,
             sunday = 1000
         )
 
-        user_statistics_data["monday_percent"] = round(user_statistics_data.get('monday') / 1000 * 100)
-        user_statistics_data["tuesday_percent"] = round(user_statistics_data.get('tuesday') / 1000 * 100)
-        user_statistics_data["wednesday_percent"] = round(user_statistics_data.get('wednesday') / 1000 * 100)
-        user_statistics_data["thursday_percent"] = round(user_statistics_data.get('thursday') / 1000 * 100)
-        user_statistics_data["friday_percent"] = round(user_statistics_data.get('friday') / 1000 * 100)
-        user_statistics_data["saturday_percent"] = round(user_statistics_data.get('saturday') / 1000 * 100)
-        user_statistics_data["sunday_percent"] = round(user_statistics_data.get('sunday') / 1000 * 100)
-        
+        weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+        for weekday in weekdays:
+            user_statistics_data[weekday + "_percent"] = round(user_statistics_data.get(weekday) / 1000 * 100)
 
         return render(request, 'statistic/statistic_page.html', context={"user_statistics_data": user_statistics_data})
