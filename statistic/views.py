@@ -18,13 +18,13 @@ class StatisticView(View):
             sunday = 1000
         )
 
-        user_statistics_data["monday_percent"] = user_statistics_data.get('monday') / 1000 * 100
-        user_statistics_data["tuesday_percent"] = user_statistics_data.get('tuesday') / 1000 * 100
-        user_statistics_data["wednesday_percent"] = user_statistics_data.get('wednesday') / 1000 * 100
-        user_statistics_data["thursday_percent"] = user_statistics_data.get('thursday') / 1000 * 100
-        user_statistics_data["friday_percent"] = user_statistics_data.get('friday') / 1000 * 100
-        user_statistics_data["saturday_percent"] = user_statistics_data.get('saturday') / 1000 * 100
-        user_statistics_data["sunday_percent"] = user_statistics_data.get('sunday') / 1000 * 100
+        user_statistics_data["monday_percent"] = round(user_statistics_data.get('monday') / 1000 * 100)
+        user_statistics_data["tuesday_percent"] = round(user_statistics_data.get('tuesday') / 1000 * 100)
+        user_statistics_data["wednesday_percent"] = round(user_statistics_data.get('wednesday') / 1000 * 100)
+        user_statistics_data["thursday_percent"] = round(user_statistics_data.get('thursday') / 1000 * 100)
+        user_statistics_data["friday_percent"] = round(user_statistics_data.get('friday') / 1000 * 100)
+        user_statistics_data["saturday_percent"] = round(user_statistics_data.get('saturday') / 1000 * 100)
+        user_statistics_data["sunday_percent"] = round(user_statistics_data.get('sunday') / 1000 * 100)
         
 
         return render(request, 'statistic/statistic_page.html', context={"user_statistics_data": user_statistics_data})
