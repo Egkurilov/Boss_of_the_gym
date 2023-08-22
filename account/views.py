@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from PIL import Image as PILImage
 import base64
 import logging
-import io
+from io import BytesIO
 
 logger = logging.getLogger(__name__)
 
@@ -27,9 +27,9 @@ class Image(View):
         # TODO сделать ресайз картинки
         # TODO проверка что это картинка
         avatar = request.FILES["avatar"].read()
-        decodedImage = base64.b64encode(avatar).decode("utf-8")
+        encodedImage = base64.b64encode(avatar)
         try:
-            PILImage.open(io.BytesIO(decodedImage))
+            PILImage.open(BytesIO(base64.b64decode(encodedImage)))
         except Exception:
             logger.info("user tried to upload an invalid image file")
             return JsonResponse({"result": "fail", "message": "Invalid image file"})
