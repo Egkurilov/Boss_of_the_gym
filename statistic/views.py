@@ -14,7 +14,7 @@ class StatisticView(View):
             wednesday = 300,
             thursday = 400,
             friday = 500,
-            saturday = 600,
+            saturday = 700,
             sunday = 1000
         )
 
