@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
-from autorization.views import RegisterView
+from authorization.views import RegisterView
 
 urlpatterns = [
     path("", include("gym_app.urls")),
-    path("auth/", include("autorization.urls")),
+    path("auth/", include("authorization.urls")),
     path("user/", include("account.urls")),
     path("statistic/", include("statistic.urls")),
     path("support/", include("support.urls")),

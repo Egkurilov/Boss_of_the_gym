@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AutorizationConfig(AppConfig):
+class authorizationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'autorization'
+    name = 'authorization'
